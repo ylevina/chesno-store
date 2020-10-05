@@ -19,7 +19,9 @@ const queryCreator = require("../commonHelpers/queryCreator");
 // Controller for creating customer and saving to DB
 exports.createCustomer = (req, res, next) => {
   // Clone query object, because validator module mutates req.body, adding other fields to object
+  console.log("req.body: ", req.body);
   const initialQuery = _.cloneDeep(req.body);
+  console.log("initialQuery: ", initialQuery);
   initialQuery.customerNo = rand();
 
   // Check Validation
@@ -27,6 +29,7 @@ exports.createCustomer = (req, res, next) => {
 
   if (!isValid) {
     return res.status(400).json(errors);
+    console.log("!valid");
   }
 
   Customer.findOne({
@@ -49,13 +52,18 @@ exports.createCustomer = (req, res, next) => {
 
       // Create query object for qustomer for saving him to DB
       const newCustomer = new Customer(queryCreator(initialQuery));
-
+      console.log("queryCreator(initialQuery): ", queryCreator(initialQuery));
+      console.log("newCustomer.login: ", newCustomer.login);
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newCustomer.password, salt, (err, hash) => {
           if (err) {
             res
               .status(400)
               .json({ message: `Error happened on server: ${err}` });
+              console.log("hash:", hash);
+              console.log(newCustomer.password);
+              
+              console.log(salt);
 
             return;
           }
