@@ -7,5 +7,6 @@ cache:
   - client/node_modules
 install:
 - npm install
+- (cd client && npm install)
 script:
-- npm run test
+- npm test --prefix ./client
