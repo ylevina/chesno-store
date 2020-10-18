@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- 12.18.3
+cache:
+  directories:
+  - node_modules
+  - client/node_modules
+install:
+# - npm install (uncomment later for the server)
+- (cd client && npm install)
+script:
+- npm test --prefix ./client
