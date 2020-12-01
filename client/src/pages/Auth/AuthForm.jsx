@@ -1,20 +1,29 @@
 import React from 'react';
+
 import { Formik, Form, Field } from 'formik';
+import { connect } from 'react-redux';
 import * as Yup from 'yup';
 import styled from 'styled-components';
 
-export const AuthForm = () => {
+import { signIn, signUp } from '../../store/auth.jsx';
+import { useState } from 'react';
+
+export const AuthForm = connect(null, { signIn, signUp })(({ signIn, signUp }) => {
+    
+    const [isRegistration, setIsRegistration] = useState(false);
+
     const initialValues = {
         firstName: '',
         lastName: '',
         login: '',
-        emal: '',
+        email: '',
         password: ''
     }
 
     const onSubmit = (values) => {
         const { isRegistration, ...credentials } = values;
-        // sign(credentials, isRegistration)
+        if(isRegistration) signUp(credentials);
+        else signIn(credentials);
     }
 
     return (
@@ -22,23 +31,32 @@ export const AuthForm = () => {
             <Formik initialValues={initialValues} onSubmit={onSubmit}>
                 {({ values }) => (
                     <Form>
-                        {values.isRegistration &&
+                        <div>
+                            <a onClick={() => { setIsRegistration(false) }}>Login</a>
+                            <a onClick={() => { setIsRegistration(true) }}>Registration</a>
+                        </div>
+                        {isRegistration &&
                             <>
-                                <Field name="firstName"></Field>
-                                <Field name="lastName"></Field>
-                                <Field name="login" placeholder='login'></Field>
-                                <Field name="email" placeholder='email'></Field>
+                                <Field name="firstName" placeholder='First name'></Field>
+                                <Field name="lastName" placeholder='Last name'></Field>
+                                <Field name="login" placeholder='Login'></Field>
+                                <Field name="email" placeholder='Email'></Field>
+                            </>                           
+                        }
+                        {!isRegistration &&
+                            <>
+                                <Field name="email" placeholder='Email'></Field>
                             </>
                         }
 
-                        <Field name="password"></Field>
-                        <button>Sign Up</button>
+                        <Field name="password" type="password" placeholder='Password'></Field>
+                        <button type="submit">Sign Up</button>                        
                     </Form>)
                 }
             </Formik>
         </Container>
     )
-}
+})
 
 const Container = styled.div`
 max-width: 500px;

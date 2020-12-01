@@ -4,7 +4,7 @@ import { AuthForm } from './AuthForm';
 
 export const Auth = () => (
     <div>
-        <Header />
+        {/* <Header /> */}
         <AuthForm />
     </div>
 )

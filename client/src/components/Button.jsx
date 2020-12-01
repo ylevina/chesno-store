@@ -10,11 +10,11 @@ export const Button = ({ backgroundColor, onClick, text }) => {
 const StyledButton = styled.button`
   background-color: ${props => (props.backgroundColor)};
   border: 1px solid ${props => (props.backgroundColor)};
-  border-radius: 30px;
+  border-radius: 20px;
   font-size: 16px;
   color: white;
   margin: 10px;
-  padding: 1em;
+  padding: 1em 1.5em;
   min-width: 100px; 
   cursor: pointer; 
 `
