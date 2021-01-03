@@ -45,11 +45,9 @@ export const setProducts = () => async dispatch => {
 
         const { status, data } = await Axios.get(reqUrl);
         const prod = data;
-
         if (status === 200) {
             dispatch(setProductsSuccess(prod));
         }
-
     } catch (error) {
         console.log(error);
     }
@@ -58,12 +56,12 @@ export const setProducts = () => async dispatch => {
 export const filterProducts = (category1, category2) => async dispatch => {
     try {
         const category = category2 ? category2 : category1;
-        const reqUrl = `/api/products/filter?categories=${category}&perPage=15&startPage=1`;
-        console.log(reqUrl);
+        const reqUrl = (category1 || category2)? 
+        `/api/products/filter?categories=${category1},${category2}&perPage=15&startPage=1`:
+        `/api/products/filter?&perPage=15&startPage=1`;
 
         const { status, data } = await Axios.get(reqUrl);
         const prod = data.products;
-        console.log(prod);
         if (status === 200) {
             dispatch(setFilterSuccess(prod));
         }

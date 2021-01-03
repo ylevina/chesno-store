@@ -13,8 +13,9 @@ const StyledButton = styled.button`
   border-radius: 20px;
   font-size: 16px;
   color: white;
-  margin: 10px;
+  margin: 10px 0;
   padding: 1em 1.5em;
   min-width: 100px; 
   cursor: pointer; 
 `
+//margin: 10px;
