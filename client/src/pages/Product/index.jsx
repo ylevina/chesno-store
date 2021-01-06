@@ -5,7 +5,6 @@ import { Button } from '../../components/Button';
 
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import InputRange from 'react-input-range';
 import Slider from "react-slick";
 
 import { ProductCard } from '../../components/ProductCard';
@@ -76,9 +75,9 @@ export const Product = (props) => {
                                 <Text>
                                     Чаша з кокоса (боул) - це натуральний посуд з природної сировини шкаралупи кокоса.
                                     Оригінальний подарунок на будь-яке свято! Такий подарунок не залишить байдужим і стане улюбленим посудом.
-                                    Є подарункова екоупаковка.
+                                    Є подарункова екоупаковка.<br></br>
                                     Посуд з кокоса відмінно підходить, як для домашнього використання, так і для кафе і ресторанів.
-                                    Своїм оригінальним зовнішнім виглядом ця натуральна посуд надає сервіровці столу особливу атмосферу.
+                                    Своїм оригінальним зовнішнім виглядом ця натуральна посуд надає сервіровці столу особливу атмосферу.<br></br>
                                     Рекомендується застосовувати піали з кокоса для других страв, закусок, салатів, супів-пюре, смузі, морозива та інших продуктів.
                                 </Text>
                             </Description>
@@ -100,11 +99,11 @@ export const Product = (props) => {
                             <Size>
                                 <FeatureNameSmall>Розмір, см:</FeatureNameSmall>
                                 <SizeList>
-                                    <li>15</li>
-                                    <li>20</li>
-                                    <li>25</li>
-                                    <li>30</li>
-                                    <li>30+</li>
+                                    <SizeItem>15</SizeItem>
+                                    <SizeItem>20</SizeItem>
+                                    <SizeItem>25</SizeItem>
+                                    <SizeItem>30</SizeItem>
+                                    <SizeItem>30+</SizeItem>
                                 </SizeList>
                                 <p>В наявності <span>5</span> товарів із заданими параметрами</p>
                             </Size>
@@ -193,6 +192,7 @@ const SliderImage = styled.img`
 `;
 
 const Wrapper = styled.div`
+    padding: 0 0 30px;
 `;
 
 const FeatureNameSmall = styled.p`
@@ -206,6 +206,7 @@ const Navigation = styled.div`
     margin: 20px 0;
     font-size: 14px;
 `;
+
 const ListStyled = styled.ul`    
     display: flex;
     list-style: none;
@@ -218,7 +219,6 @@ const VerticalList = styled.ul`
     margin: 0;
     padding: 0;
 `;
-
 
 //ToDo: find pretty arrow '>'
 const CategoryItem = styled.li`
@@ -239,17 +239,16 @@ const ImageSlider = styled.div`
 `;
 
 const Main = styled.div`
-    display:flex;  
+    display: flex;  
     flex-direction: column;   
 `;
 
 const ProductDetails = styled.div`   
-    display:flex; 
+    display: flex; 
 `;
 
 const Left = styled.div` 
-    width: 50%;   
-    margin-right: 20px;
+    width: 50%;  
 `;
 
 const Right = styled.div`   
@@ -261,11 +260,12 @@ const Image = styled.img`
     margin-bottom: 20px;
 `;
 
-const Description = styled.div`    
+const Description = styled.div` 
+    width: 85%   
 `;
 
 const DescriptionHeader = styled.p`
-    margin: 10px 0;
+    margin: 5px 0;
     font-weight: bold;
 `;
 
@@ -314,9 +314,15 @@ const SizeList = styled.ul`
     }
     li:not(:last-child) {
         border-right: 1px solid #FF8B00;
-    }
+    } 
+    .active {
+        background: rgba(255,217,142,0.2);
+    }   
 `;
 
+const SizeItem = styled.li`
+
+`;
 
 const Additional = styled.div`
     width: 80%;    

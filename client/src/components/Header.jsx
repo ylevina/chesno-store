@@ -5,6 +5,10 @@ import { CategoriesList } from './CategoriesList.jsx';
 import { ListItemStyled } from './ListItemStyled.jsx';
 import { LinkStyled } from './LinkStyled.jsx';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingBag, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
     const [showCategories, setShowCategories] = useState(false);
@@ -12,45 +16,45 @@ export const Header = () => {
     return (
         <HeaderStyled className='header'>
             <HeaderTop className='header__top'>
-                <div className='header-top__contacts'>
-                    <i className="fas fa-phone-alt"></i>
+                <Contacts className='header-top__contacts'>
+                    <StyledFontAwesomeIcon icon={faPhoneAlt}></StyledFontAwesomeIcon>
                     <p>+38 (067) 833 16 62, Пн - Нд, 10:00 - 20:00</p>
-                </div>
+                </Contacts>
                 <ListStyled className='header-top__menu'>
                     <ListItemStyled>
-                        <LinkStyled href="#">Наша місія</LinkStyled>
+                        <LinkStyled color='black' to=''>Наша місія</LinkStyled>
                     </ListItemStyled>
                     <ListItemStyled>
-                        <LinkStyled href="#">Новини</LinkStyled>
+                        <LinkStyled color='black' to=''>Новини</LinkStyled>
                     </ListItemStyled>
                     <ListItemStyled>
-                        <LinkStyled href="#">Чому ми?</LinkStyled>
+                        <LinkStyled color='black' to=''>Чому ми?</LinkStyled>
                     </ListItemStyled>
                     <ListItemStyled>
-                        <LinkStyled href="#">Питання та відповіді</LinkStyled>
+                        <LinkStyled color='black' to=''>Питання та відповіді</LinkStyled>
                     </ListItemStyled>
                     <ListItemStyled>
-                        <LinkStyled href="#">Поради</LinkStyled>
+                        <LinkStyled color='black' to=''>Поради</LinkStyled>
                     </ListItemStyled>
                     <ListItemStyled>
-                        <LinkStyled href="#">Як долучитися</LinkStyled>
+                        <LinkStyled color='black' to=''>Як долучитися</LinkStyled>
                     </ListItemStyled>
                     <ListItemStyled>
-                        <LinkStyled href="#">Акції</LinkStyled>
+                        <LinkStyled color='black' to=''>Акції</LinkStyled>
                     </ListItemStyled>
                 </ListStyled>
             </HeaderTop>
             <HeaderBottom className='header__bottom'>
                 <LogoWrap className='header-bottom__logo'>
                     <div>
-                        <img src='./img/header/chesnoback7.png' alt="cartoon dog" />
+                        <LogoImageOne src='./img/header/chesnoback7.png' alt="cartoon dog" />
                     </div>
                     <LogoTextWrap>
-                        <img src='./img/header/chesnoback5.png' alt="chesno" />
-                        <img src='./img/header/chesnoback6.png' alt="store" />
+                        <LogoImageTwo src='./img/header/chesnoback5.png' alt="chesno" />
+                        <LogoImageThree src='./img/header/chesnoback6.png' alt="store" />
                     </LogoTextWrap>
                 </LogoWrap>
-                <CategoryMenu className='header-bottom__category-menu'>
+                <Categories className='header-bottom__category-menu'>
                     <CategoryMenu onClick={() => setShowCategories(!showCategories)}>
                         <Accordion >
                             <span></span>
@@ -62,19 +66,27 @@ export const Header = () => {
                     <div>
                         {showCategories && <CategoriesList></CategoriesList>}
                     </div>
-                </CategoryMenu>
+                </Categories>
                 <div className='header-bottom__search-form'>
                     <input type="text" placeholder='Я шукаю...' />
                     <button>Search</button>
                 </div>
                 <div className='header-bottom__personal'>
-                    <i className="far fa-heart"></i>
-                    <i className="fas fa-shopping-bag"></i>
+                    <LinkStyled to="/favorites"><StyledFontAwesomeIcon icon={faHeart}></StyledFontAwesomeIcon></LinkStyled>
+                    <LinkStyled to='/cart'><StyledFontAwesomeIcon icon={faShoppingBag}></StyledFontAwesomeIcon></LinkStyled>
+                    {/* <Button></Button> */}
                 </div>
             </HeaderBottom>
         </HeaderStyled>
     )
 }
+
+const StyledFontAwesomeIcon = styled(FontAwesomeIcon)` 
+    font-size: 25px; 
+    margin: 10px;
+    cursor: pointer;
+    color: #FF7051;
+`;
 
 const HeaderStyled = styled.header`
     display: flex;
@@ -85,22 +97,61 @@ const HeaderStyled = styled.header`
 
 const HeaderTop = styled.div`
     display: flex;
+    justify-content: space-between;
+    background: #F7F7F7;
+    border-radius: 0px 0px 20px 20px;
+    width: 1180px;
+    font-size: 14px; 
+    margin-bottom: 30px; 
+    padding: 0 15px;  
+`;
+
+const Contacts = styled.div`
+    display: flex;
+    align-items: center; 
+    width: 30%;
+    svg {
+        font-size: 14px;
+        margin: 0 5px;
+    }   
 `;
 
 const HeaderBottom = styled.div`
+    width: 1180px;
     display: flex;
+    justify-content: space-between;
     align-items: flex-start;
 `;
 
 const ListStyled = styled.ul`
-    display: flex;
+    display: flex;   
     list-style-type: none;
+    li:not(:last-child) {
+        margin-right: 20px; 
+    }
 `;
 
 const LogoWrap = styled.div`
     display: flex;
     justify-content: space-between;
-`
+    img {
+        margin: 0 9px 6px 0;
+    }
+`;
+const LogoImageOne = styled.img`
+    width: 54px;
+    height: 49px;
+`;
+
+const LogoImageTwo = styled.img`
+    width: 119px;
+    height: 29px;
+`;
+
+const LogoImageThree = styled.img`
+    width: 46px;
+    height: 14px;
+`;
 
 const LogoTextWrap = styled.div`
     display: flex;
@@ -108,9 +159,16 @@ const LogoTextWrap = styled.div`
     align-items: flex-start;
 `
 
-const CategoryMenu = styled.div`
+const Categories = styled.div`
     display: flex;
-`
+    border: 1px solid #FF8B00;
+    border-radius: 20px;
+    padding: 10px;
+`;
+
+const CategoryMenu = styled.div`
+    display: flex;    
+`;
 
 const Accordion = styled.div`
     border: 1px solid red;

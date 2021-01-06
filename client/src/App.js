@@ -11,6 +11,8 @@ import { store } from './store';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Categories } from './pages/Categories';
+import { Favorites } from './pages/Favorites';
+import { Cart } from './pages/Cart';
 import { Product } from './pages/Product';
 import styled from 'styled-components';
 
@@ -39,11 +41,11 @@ function App() {
               </Route>
 
               <Route path="/favorites">
-                {/* <Favorites /> */}
+                <Favorites />
               </Route>
 
               <Route path="/cart">
-                {/* <Cart /> */}
+                <Cart />
               </Route>
 
               <Route path="/checkout">

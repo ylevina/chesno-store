@@ -10,7 +10,7 @@ export const Home = () => (
         <PopularProductsSection>
             <SectionHeader>
                 <Heading>Користуються попитом</Heading>
-                <LinkStyled  to="/categories">Більше категорій</LinkStyled>      
+                <LinkStyled to="/categories">Більше категорій</LinkStyled>      
             </SectionHeader>
             <PopularProducts>
                 <ProductCard

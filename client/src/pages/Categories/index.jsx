@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import InputRange from 'react-input-range';
-
 import { ProductCard } from '../../components/ProductCard';
 import { CategoriesList } from '../../components/CategoriesList';
 // import { Products } from '../../components/Products';
@@ -89,14 +86,7 @@ export const Categories = connect(mapStateToProps, { selectCategories, filterPro
                                 <NumberInputStyled type="number" step="any" />
                                 <NumberInputStyled type="number" step="any" />
                             </PriceInputs>
-                            <PriceSlider type="range"></PriceSlider>
-                            <form>
-                                <InputRange
-                                    maxValue={25}
-                                    minValue={0}
-                                    value={price}
-                                    onChange={value => setPrice({value})} />
-                            </form>
+                            <PriceSlider type="range"></PriceSlider>                           
                         </PriceFilter>
                         <ColorFilter>
                             <p>Колір</p>
