@@ -1,20 +1,22 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import styled from 'styled-components';
 
-import { Auth } from './pages/Auth';
-import { Home } from './pages/Home';
-import { Button } from './components/Button';
-import { Modal } from './components/Modal';
 
 import { store } from './store';
+import { Button } from './components/Button';
+import { Modal } from './components/Modal';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Categories } from './pages/Categories';
 import { Favorites } from './pages/Favorites';
-import { Cart } from './pages/Cart';
+import { Checkout } from './pages/Checkout';
 import { Product } from './pages/Product';
-import styled from 'styled-components';
+import { Cart } from './pages/Cart';
+import { Auth } from './pages/Auth';
+import { Home } from './pages/Home';
+
 
 function App() {
 
@@ -49,7 +51,7 @@ function App() {
               </Route>
 
               <Route path="/checkout">
-                {/* <Checkout /> */}
+                <Checkout />
               </Route>
 
               <Route path="/profile">

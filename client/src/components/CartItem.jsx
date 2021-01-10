@@ -7,7 +7,7 @@ import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { Color } from './Color';
 
 
-export const CartItem = ({ imgUrl, name, price }) => {
+export const CartItem = ({ imgUrl, name, price, size, color, quantity }) => {
     return (
         <StyledCartItem>
             <StyledFavoritesIcon icon={faTrashAlt} onClick={() => { }}></StyledFavoritesIcon>
@@ -52,6 +52,7 @@ const StyledFavoritesIcon = styled(FontAwesomeIcon)`
 `;
 
 const StyledCartItem = styled.div`
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     width: 1084px;
@@ -59,7 +60,7 @@ const StyledCartItem = styled.div`
     border: 1px solid #E8E8E8;
     border-radius: 20px;
     padding: 15px 40px;
-    margin-bottom: 10px;
+    margin: 10px 0;
 `;
 
 const Image = styled.img`

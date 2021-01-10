@@ -42,6 +42,7 @@ const CartStyled = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px 0;
 `;
 
 const Checkout = styled.div`

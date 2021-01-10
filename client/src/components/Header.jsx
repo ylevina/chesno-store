@@ -67,10 +67,10 @@ export const Header = () => {
                         {showCategories && <CategoriesList></CategoriesList>}
                     </div>
                 </Categories>
-                <div className='header-bottom__search-form'>
+                <SearchForm className='header-bottom__search-form'>
                     <input type="text" placeholder='Я шукаю...' />
                     <button>Search</button>
-                </div>
+                </SearchForm>
                 <div className='header-bottom__personal'>
                     <LinkStyled to="/favorites"><StyledFontAwesomeIcon icon={faHeart}></StyledFontAwesomeIcon></LinkStyled>
                     <LinkStyled to='/cart'><StyledFontAwesomeIcon icon={faShoppingBag}></StyledFontAwesomeIcon></LinkStyled>
@@ -157,13 +157,13 @@ const LogoTextWrap = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-`
+`;
 
 const Categories = styled.div`
     display: flex;
     border: 1px solid #FF8B00;
     border-radius: 20px;
-    padding: 10px;
+    padding: 10px 20px;
 `;
 
 const CategoryMenu = styled.div`
@@ -175,4 +175,9 @@ const Accordion = styled.div`
     background: red;
     height: 15px;
     width: 15px;
+`;
+
+const SearchForm = styled.div`
+    border: 1px solid #FF8B00;
+    border-radius: 20px;
 `;
