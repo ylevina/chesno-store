@@ -8,6 +8,8 @@ import { setCategories, selectCategories } from '../../store/category.jsx';
 import { filterProducts, selectFilteredProducts } from '../../store/products.jsx';
 import { Button } from '../../components/Button';
 import { Checkbox } from '../../components/Checkbox';
+import { Input } from '../../components/Input';
+import { PersonalInformation } from '../../components/PersonalInformation';
 
 const mapStateToProps = state => ({
     categories: selectCategories(state),
@@ -24,56 +26,73 @@ export const Checkout = connect(mapStateToProps, { selectCategories, filterProdu
                 <Heading>Оформлення замовлення</Heading>
                 <Order>
                     <Details>
-                        <CheckoutItem />
-                        <PersonalInformationStyled>
-                            <h3>Персональна інформація:</h3>
-                            <div>
-                                <div>
-                                    <label for="name">Ім'я</label>
-                                    <input type="text" id="name" name="name" />
-                                </div>
-                                <div>
-                                    <label for="surname">Прізвище</label>
-                                    <input type="text" id="surname" name="surname" />
-                                </div>
-                                <div>
-                                    <label for="email">Електронна адреса</label>
-                                    <input type="text" id="email" name="email" />
-                                </div>
-                                <div>
-                                    <label for="phone">Номер телефону</label>
-                                    <input type="text" id="phone" name="phone" />
-                                </div>
-                            </div>
-                        </PersonalInformationStyled>
-                        <Delivery>
-                            <h3>Виберіть спосіб доставки:</h3>
-                            <div>
-                                <Checkbox text="кур’єром по місту" />
-                            </div>
-                        </Delivery>
-                        <PaymentMethod>
-                            <h3>Виберіть спосіб оплати:</h3>
-                            <div>
-
-                            </div>
-                        </PaymentMethod>
+                        <CheckoutItems>
+                            <CheckoutItem />
+                        </CheckoutItems>
+                        <SectionStyled>
+                            <FlexRow marginBottom="0">
+                                <Left>
+                                    <SubSectionHeading>Персональна інформація:</SubSectionHeading>
+                                </Left>
+                                <Right>
+                                    <PersonalInformation></PersonalInformation>
+                                </Right>
+                            </FlexRow>
+                        </SectionStyled>
+                        <SectionStyled>
+                            <FlexColumn>
+                                <FlexRow marginBottom="15px">
+                                    <Left>
+                                        <SubSectionHeading>Виберіть спосіб доставки:</SubSectionHeading>
+                                    </Left>
+                                    <Right>
+                                        <Checkbox text="кур’єром по місту" />
+                                        <Checkbox text="самовивіз зі складу" />
+                                        <Checkbox text="Укрпошта" />
+                                        <Checkbox text="Нова пошта" />
+                                    </Right>
+                                </FlexRow>
+                                <FlexRow marginBottom="0">
+                                    <Left>
+                                        <SubSectionHeading>Адреса доставки:</SubSectionHeading>
+                                    </Left>
+                                    <Right>
+                                        <Input hasLabel={false} />
+                                    </Right>
+                                </FlexRow>
+                            </FlexColumn>
+                        </SectionStyled>
+                        <SectionStyled>
+                            <FlexRow marginBottom="0">
+                                <Left>
+                                    <SubSectionHeading>Виберіть спосіб оплати:</SubSectionHeading>
+                                </Left>
+                                <Right>
+                                    <Checkbox text="банківською картою при отриманні" />
+                                    <Checkbox text="готівкою при отриманні" />
+                                </Right>
+                            </FlexRow>
+                        </SectionStyled>
                     </Details>
                     <Total>
-                        <h3>Разом</h3>
-                        <div>
-                            <p>2 товари на суму</p>
-                            <p>300 грн</p>
-                        </div>
-                        <div>
-                            <p>Вартість доставки</p>
-                            <p>40 грн</p>
-                        </div>
-                        <div>
-                            <p>До сплати:</p>
-                            <p>340 грн</p>
-                        </div>
-                        <Button backgroundColor='#FF8B00' textColor='white' onClick={() => { }} text='Замовлення підтверджую'></Button>
+                        <FlexColumnDecorated>
+                            <TotalHeading>Разом</TotalHeading>
+                            <FlexRow marginBottom="0">
+                                <TotalTextLine>2 товари на суму</TotalTextLine>
+                                <AmountTotal>300 грн</AmountTotal>
+                            </FlexRow>
+                            <FlexRow marginBottom="0">
+                                <TotalTextLine>Вартість доставки</TotalTextLine>
+                                <TotalTextLine>40 грн</TotalTextLine>
+                            </FlexRow>
+                        </FlexColumnDecorated>
+                        <FlexColumnDecorated>
+                            <FlexRow marginBottom="0">
+                                <TotalTextLine>До сплати:</TotalTextLine>
+                                <AmountToPay>340 грн</AmountToPay>
+                            </FlexRow>
+                            <Button backgroundColor='#FF8B00' textColor='white' onClick={() => { }} text='Замовлення підтверджую'></Button>
+                        </FlexColumnDecorated>
                     </Total>
                 </Order>
             </CheckoutStyled>
@@ -87,10 +106,18 @@ const CheckoutStyled = styled.div`
 `;
 
 const Heading = styled.h1`  
+    font-size: 20px;
+    font-weight: bolder;
 `;
 
 const Order = styled.div`
     display: flex;   
+`;
+
+const CheckoutItems = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 0;   
 `;
 
 const PersonalInformationStyled = styled.div`
@@ -103,25 +130,110 @@ const PersonalInformationStyled = styled.div`
     margin: 10px 0;
 `;
 
+const SectionStyled = styled.div`
+    box-sizing: border-box;
+    display: flex;
+    aligh-items: baseline;
+    border: 1px solid #E8E8E8;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 0 0 15px;
+`;
+
 const Details = styled.div`
     display: flex;  
-    flex-direction: column;  
+    flex-direction: column; 
+    margin: 0 20px 0 0; 
+    width: 756px;
 `;
 
 const Delivery = styled.div`
-    display: flex;   
+    display: flex;  
+    flex-direction: column; 
     border: 1px solid #E8E8E8;
     border-radius: 20px; 
+    padding: 30px;
 `;
 
 const PaymentMethod = styled.div`
     display: flex; 
     border: 1px solid #E8E8E8;
-    border-radius: 20px;   
+    border-radius: 20px;  
+    padding: 30px; 
 `;
 
 const Total = styled.div`
-    display: flex;  
+    box-sizing: border-box;
+    width: 30%;
+    height: 340px;
+    display: flex; 
+    flex-direction: column; 
     border: 1px solid #FF8B00;
     border-radius: 20px;  
+    padding: 32px;
 `;
+
+const TotalHeading = styled.h3`
+    font-size: 18px;
+    margin: 0 0 0.8em;  
+`;
+
+const TotalTextLine = styled.p`
+    margin: 0 0 0.8em;  
+`;
+
+const AmountTotal = styled.p`
+    margin: 0 0 0.8em; 
+    font-size: 20px; 
+`;
+
+const AmountToPay = styled.p`
+    margin: 0 0 0.8em; 
+    font-size: 24px; 
+    color: #FF8B00;
+`;
+
+const FlexColumn = styled.div`
+    display: flex;  
+    flex-direction: column;
+    width: 100%;   
+`;
+
+const FlexColumnDecorated = styled(FlexColumn)`
+    :last-child:before {
+        display: block;
+        content:' ';
+        width: 100%;
+        border-top: 1px solid #E8E8E8;
+        margin: 30px 0 20px;
+    }
+`;
+
+const FlexRow = styled.div`
+    display: flex;  
+    justify-content: space-between;   
+    width: 100%;
+    margin-bottom: ${props => (props.marginBottom)};
+`;
+
+const SubSectionHeading = styled.h3`
+    font-weight: normal;
+    font-size: 18px;
+    margin: 0;
+    width: 100%;
+`;
+
+const Left = styled.div`
+    display: flex;  
+    justify-content: space-between;
+    margin: 0 20px 0 0;
+    width: 35%;
+`;
+
+const Right = styled.div`
+    display: flex; 
+    flex-direction: column; 
+    margin: 0;
+    width: 65%;
+`;
+

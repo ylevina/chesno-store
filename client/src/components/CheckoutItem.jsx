@@ -8,52 +8,84 @@ import { Color } from './Color';
 
 export const CheckoutItem = ({ imgUrl, name, price, size, color, quantity }) => {
     return (
-        <StyledCartItem>
-            <Image src='./img/cart/image34.png' />
-            <Product>
-                <Name>Полірована тарілка з кокосу</Name>
-                <Details>
-                    <Price>
-                        <p>Ціна:</p>
-                        <p>150 грн</p>
-                    </Price>
-                    <Size>
-                        <p>Розмір:</p>
-                        <p>15 см</p>
-                    </Size>
-                    <ColorStyled>
-                        <p>Колір:</p>
-                        <Color size='24px' backgroundColor='#695041' onClick={() => { }}></Color>
-                    </ColorStyled>
-                </Details>
-            </Product>
-            <Amount>
-                <p>2 шт</p>
-            </Amount>
-            <TotalPrice>
-                <p>300 грн</p>
-            </TotalPrice>
-        </StyledCartItem>
+        <StyledCheckoutItem>
+            <Item>
+                <Image src='./img/cart/image34.png' />
+                <Product>
+                    <Name>Полірована тарілка з кокосу</Name>
+                    <Details>
+                        <Price>
+                            <p>Ціна:</p>
+                            <p>150 грн</p>
+                        </Price>
+                        <Size>
+                            <p>Розмір:</p>
+                            <p>15 см</p>
+                        </Size>
+                        <ColorStyled>
+                            <p>Колір:</p>
+                            <Color size='24px' backgroundColor='#695041' onClick={() => { }}></Color>
+                        </ColorStyled>
+                    </Details>
+                </Product>
+                <Amount>
+                    <p>2 шт</p>
+                </Amount>
+                <TotalPrice>
+                    <p>300 грн</p>
+                </TotalPrice>
+            </Item>
+            <Item>
+                <Image src='./img/cart/image34.png' />
+                <Product>
+                    <Name>Полірована тарілка з кокосу</Name>
+                    <Details>
+                        <Price>
+                            <p>Ціна:</p>
+                            <p>150 грн</p>
+                        </Price>
+                        <Size>
+                            <p>Розмір:</p>
+                            <p>15 см</p>
+                        </Size>
+                        <ColorStyled>
+                            <p>Колір:</p>
+                            <Color size='24px' backgroundColor='#695041' onClick={() => { }}></Color>
+                        </ColorStyled>
+                    </Details>
+                </Product>
+                <Amount>
+                    <p>2 шт</p>
+                </Amount>
+                <TotalPrice>
+                    <p>300 грн</p>
+                </TotalPrice>
+            </Item>
+
+        </StyledCheckoutItem>
+
     );
 }
 
-const StyledFavoritesIcon = styled(FontAwesomeIcon)` 
-    font-size: 20px; 
-    margin: 20px;
-    cursor: pointer;
-    color: #FF7051;
+const StyledCheckoutItem = styled.div`
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    aligh-items: baseline;
+    width: 756px;    
+    border: 1px solid #E8E8E8;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 0 0 10px 0;
 `;
 
-const StyledCartItem = styled.div`
+const Item = styled.div`
     box-sizing: border-box;
     display: flex;
     aligh-items: baseline;
     width: 756px;
-    height: 132px;
-    border: 1px solid #E8E8E8;
-    border-radius: 20px;
-    padding: 30px;
-    margin: 10px 0;
+      
+    margin: 0 0 30px 0;
 `;
 
 const Image = styled.img`

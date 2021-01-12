@@ -1,11 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
-import { Color } from './Color';
-
 
 export const Checkbox = ({text}) => {
     return (
@@ -16,14 +10,13 @@ export const Checkbox = ({text}) => {
     );
 }
 
-/* Customize the label (the container) */
 const Container = styled.label`
-    isplay: block;
+    display: block;
     position: relative;
-    padding-left: 35px;
+    padding-left: 24px;
     margin-bottom: 12px;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 16px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -39,10 +32,10 @@ const Container = styled.label`
     
     span {
         position: absolute;
-        top: 0;
+        top: 4px;
         left: 0;
-        height: 25px;
-        width: 25px;
+        height: 16px;
+        width: 16px;
         background-color: white;
         border: 1px solid #FF8B00;
     }
@@ -52,7 +45,7 @@ const Container = styled.label`
     }
 
     input:checked ~ span {
-        background - color: #FF8B00;
+        background - color: #2196F3;
     }
 
     span:after {
@@ -66,14 +59,10 @@ const Container = styled.label`
     }
     
     span:after {
-        left: 9px;
-        top: 5px;
-        width: 5px;
-        height: 10px;
-        border: solid white;
-        border-width: 0 3px 3px 0;
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
-    }
+        left: 3px;
+        top: 3px;
+        width: 8px;
+        height: 8px;        
+        background: #FF8B00;
+    }  
 `;
