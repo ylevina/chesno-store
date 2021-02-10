@@ -23,7 +23,8 @@ const ProductSchema = new Schema(
     previousPrice: {
       type: Number
     },
-    categories: {
+    categories:
+    {
       type: String,
       required: true
     },

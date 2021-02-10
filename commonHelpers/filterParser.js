@@ -1,4 +1,4 @@
-const excludedParams = ["perPage", "startPage", "minPrice", "maxPrice"];
+const excludedParams = ["perPage", "startPage", "minPrice", "maxPrice", "categories"];
 
 module.exports = function filterParser(filtersQueryString) {
   const mongooseQuery = {};
@@ -7,6 +7,12 @@ module.exports = function filterParser(filtersQueryString) {
     mongooseQuery.currentPrice = {
       $gt: Number(filtersQueryString.minPrice),
       $lt: Number(filtersQueryString.maxPrice)
+    };
+  }
+
+  if(filtersQueryString.categories) {
+    mongooseQuery.categories = {
+      $all: filtersQueryString.categories.split(",")
     };
   }
 

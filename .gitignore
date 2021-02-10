@@ -120,3 +120,6 @@ dist
 # production
 /build
 documentation
+
+#dev
+keys_dev.js
