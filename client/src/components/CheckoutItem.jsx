@@ -1,91 +1,134 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { Color } from './Color';
 
 
-export const CheckoutItem = ({ imgUrl, name, price, size, color, quantity }) => {
+export const CheckoutItems = ({ imgUrl, name, price, size, color, quantity }) => {
     return (
-        <StyledCheckoutItem>
+        <StyledCheckoutItems>
             <Item>
-                <Image src='./img/cart/image34.png' />
-                <Product>
-                    <Name>Полірована тарілка з кокосу</Name>
-                    <Details>
-                        <Price>
-                            <p>Ціна:</p>
-                            <p>150 грн</p>
-                        </Price>
-                        <Size>
-                            <p>Розмір:</p>
-                            <p>15 см</p>
-                        </Size>
-                        <ColorStyled>
-                            <p>Колір:</p>
-                            <Color size='24px' backgroundColor='#695041' onClick={() => { }}></Color>
-                        </ColorStyled>
-                    </Details>
-                </Product>
-                <Amount>
-                    <p>2 шт</p>
-                </Amount>
-                <TotalPrice>
-                    <p>300 грн</p>
-                </TotalPrice>
+                <FlexRow>
+                    <Image src='./img/cart/image34.png' />
+                    <Product>
+                        <Name>Полірована тарілка з кокосу</Name>
+                        <Details>
+                            <Price>
+                                <p>Ціна:</p>
+                                <p>150 грн</p>
+                            </Price>
+                            <Size>
+                                <p>Розмір:</p>
+                                <p>15 см</p>
+                            </Size>
+                            <ColorStyled>
+                                <p>Колір:</p>
+                                <Color size='24px' backgroundColor='#695041' onClick={() => { }}></Color>
+                            </ColorStyled>
+                        </Details>
+                    </Product>
+                    <Amount>
+                        <p>2 шт</p>
+                    </Amount>
+                    <TotalPrice>
+                        <p>300 грн</p>
+                    </TotalPrice>
+                </FlexRow>
             </Item>
             <Item>
-                <Image src='./img/cart/image34.png' />
-                <Product>
-                    <Name>Полірована тарілка з кокосу</Name>
-                    <Details>
-                        <Price>
-                            <p>Ціна:</p>
-                            <p>150 грн</p>
-                        </Price>
-                        <Size>
-                            <p>Розмір:</p>
-                            <p>15 см</p>
-                        </Size>
-                        <ColorStyled>
-                            <p>Колір:</p>
-                            <Color size='24px' backgroundColor='#695041' onClick={() => { }}></Color>
-                        </ColorStyled>
-                    </Details>
-                </Product>
-                <Amount>
-                    <p>2 шт</p>
-                </Amount>
-                <TotalPrice>
-                    <p>300 грн</p>
-                </TotalPrice>
+                <FlexRow>
+                    <Image src='./img/cart/image34.png' />
+                    <Product>
+                        <Name>Полірована тарілка з кокосу</Name>
+                        <Details>
+                            <Price>
+                                <p>Ціна:</p>
+                                <p>150 грн</p>
+                            </Price>
+                            <Size>
+                                <p>Розмір:</p>
+                                <p>15 см</p>
+                            </Size>
+                            <ColorStyled>
+                                <p>Колір:</p>
+                                <Color size='24px' backgroundColor='#695041' onClick={() => { }}></Color>
+                            </ColorStyled>
+                        </Details>
+                    </Product>
+                    <Amount>
+                        <p>2 шт</p>
+                    </Amount>
+                    <TotalPrice>
+                        <p>300 грн</p>
+                    </TotalPrice>
+                </FlexRow>
             </Item>
-
-        </StyledCheckoutItem>
+            <Item>
+                <FlexRow>
+                    <Image src='./img/cart/image34.png' />
+                    <Product>
+                        <Name>Полірована тарілка з кокосу</Name>
+                        <Details>
+                            <Price>
+                                <p>Ціна:</p>
+                                <p>150 грн</p>
+                            </Price>
+                            <Size>
+                                <p>Розмір:</p>
+                                <p>15 см</p>
+                            </Size>
+                            <ColorStyled>
+                                <p>Колір:</p>
+                                <Color size='24px' backgroundColor='#695041' onClick={() => { }}></Color>
+                            </ColorStyled>
+                        </Details>
+                    </Product>
+                    <Amount>
+                        <p>2 шт</p>
+                    </Amount>
+                    <TotalPrice>
+                        <p>300 грн</p>
+                    </TotalPrice>
+                </FlexRow>
+            </Item>
+        </StyledCheckoutItems>
 
     );
 }
 
-const StyledCheckoutItem = styled.div`
+const StyledCheckoutItems = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     aligh-items: baseline;
-    width: 756px;    
-    border: 1px solid #E8E8E8;
-    border-radius: 20px;
-    padding: 30px;
-    margin: 0 0 10px 0;
+    width: 100%; 
+    margin: 0;
+`;
+
+const FlexRow = styled.div`
+    box-sizing: border-box;
+    display: flex;
+    aligh-items: baseline;
+    width: 100%;    
 `;
 
 const Item = styled.div`
     box-sizing: border-box;
     display: flex;
-    aligh-items: baseline;
-    width: 756px;
-      
-    margin: 0 0 30px 0;
+    flex-direction: column;
+    width: 100%;
+
+    :not(:last-child) {
+        
+    }  
+    
+    :not(:last-child):after {
+        display: block;
+        content:' ';
+        width: 100%;
+        border-top: 1px solid #E8E8E8;
+        margin: 30px 0;        
+    }      
 `;
 
 const Image = styled.img`
@@ -96,10 +139,11 @@ const Image = styled.img`
 `;
 
 const Product = styled.div`
-    width: 60%;   
+    width: 65%;   
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
     p {
         margin: 0 10px 0 0;
     }
@@ -115,6 +159,7 @@ const Details = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 14px; 
+
     p {
         margin: 0 5px 0 0;
     }
@@ -137,9 +182,11 @@ const ColorStyled = styled.div`
 `;
 
 const Amount = styled.div`
-    width: 15%;   
-    display: flex;   
+    width: 20%;   
+    display: flex;  
+    justify-content: center; 
     font-size: 14px;
+
     p {
         margin: 0;
         padding-top: 4px;
@@ -147,9 +194,11 @@ const Amount = styled.div`
 `;
 
 const TotalPrice = styled.div`
-    width: 10%;  
+    width: 15%;  
     display: flex;
+    justify-content: flex-end;
     font-size: 18px; 
+
     p {
         margin: 0;
     }

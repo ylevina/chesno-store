@@ -43,10 +43,10 @@ export const signIn = ({ loginOrEmail, password }) => async dispatch => {
             loginOrEmail,
             password
         };
-
+        console.log("reqData:", reqData);
         const { status, data } = await Axios.post(reqUrl, reqData);
         const token = data.token;
-
+        console.log("token:", token);
         if (status === 200) {
             dispatch(setAuthSuccess({
                 token

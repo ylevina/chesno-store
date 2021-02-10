@@ -1,78 +1,27 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import styled from 'styled-components';
 
-
-import { store } from './store';
-import { Button } from './components/Button';
-import { Modal } from './components/Modal';
+import { store, persistor } from './store';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { Categories } from './pages/Categories';
-import { Favorites } from './pages/Favorites';
-import { Checkout } from './pages/Checkout';
-import { Product } from './pages/Product';
-import { Cart } from './pages/Cart';
-import { Auth } from './pages/Auth';
-import { Home } from './pages/Home';
-
+import { Navigation } from './navigation';
 
 function App() {
-
-  const actions = <>
-    <Button backgroundColor="orange" text="Ok" onClick={() => { }}></Button>
-    <Button backgroundColor="orange" text="Cancel" onClick={() => { }}></Button>
-  </>
-
   return (
     <Provider store={store}>
-      <Router>
-        <div>
-          <Header >
-            {/* <Navbar></Navbar> */}
-          </Header>
-          <Main>
-            <Switch>
-              <Route path="/categories">
-                <Categories />
-              </Route>
-
-              <Route path="/product">
-                <Product />
-              </Route>
-
-              <Route path="/favorites">
-                <Favorites />
-              </Route>
-
-              <Route path="/cart">
-                <Cart />
-              </Route>
-
-              <Route path="/checkout">
-                <Checkout />
-              </Route>
-
-              <Route path="/profile">
-                {/* <Profile /> */}
-              </Route>
-
-              <Route path="/">
-                <Home />
-              </Route>
-            </Switch>
-          </Main>
-          <Footer />
-        </div>
-      </Router>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          <div>
+            <Header />
+            <Navigation />
+            <Footer />
+          </div>
+        </Router>
+      </PersistGate>
     </Provider>
   );
 }
 
 export default App;
-
-const Main = styled.div`
-  width: 1180px;
-  margin: 0 auto;
-`;

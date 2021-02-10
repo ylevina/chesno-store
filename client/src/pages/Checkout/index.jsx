@@ -2,100 +2,116 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import { CheckoutItem } from '../../components/CheckoutItem';
-
 import { setCategories, selectCategories } from '../../store/category.jsx';
 import { filterProducts, selectFilteredProducts } from '../../store/products.jsx';
+
 import { Button } from '../../components/Button';
 import { Checkbox } from '../../components/Checkbox';
-import { Input } from '../../components/Input';
+import { CheckoutItems } from '../../components/CheckoutItem';
 import { PersonalInformation } from '../../components/PersonalInformation';
+import { Input } from '../../components/Input.jsx';
+import { Formik } from 'formik';
 
 const mapStateToProps = state => ({
     categories: selectCategories(state),
     products: selectFilteredProducts(state)
 });
 
+// if logged In get initial values of personal information from user profile info
+// else leave empty to be filled in
+
+const initialValues = {
+    firstName: '',
+    lastName: '',
+    login: '',
+    email: '',
+    loginOrEmail: '',
+    password: ''
+}
+
+const onSubmit = (values) => {
+    // checkout();
+}
+
 export const Checkout = connect(mapStateToProps, { selectCategories, filterProducts })(
     ({ categories, filterProducts, products }) => {
-
-        const [topCategory, setTopCategory] = useState('');
-
         return (
-            <CheckoutStyled>
-                <Heading>Оформлення замовлення</Heading>
-                <Order>
-                    <Details>
-                        <CheckoutItems>
-                            <CheckoutItem />
-                        </CheckoutItems>
-                        <SectionStyled>
-                            <FlexRow marginBottom="0">
-                                <Left>
-                                    <SubSectionHeading>Персональна інформація:</SubSectionHeading>
-                                </Left>
-                                <Right>
-                                    <PersonalInformation></PersonalInformation>
-                                </Right>
-                            </FlexRow>
-                        </SectionStyled>
-                        <SectionStyled>
-                            <FlexColumn>
-                                <FlexRow marginBottom="15px">
-                                    <Left>
-                                        <SubSectionHeading>Виберіть спосіб доставки:</SubSectionHeading>
-                                    </Left>
-                                    <Right>
-                                        <Checkbox text="кур’єром по місту" />
-                                        <Checkbox text="самовивіз зі складу" />
-                                        <Checkbox text="Укрпошта" />
-                                        <Checkbox text="Нова пошта" />
-                                    </Right>
-                                </FlexRow>
+            <Formik>
+                <CheckoutStyled>
+                    <Heading>Оформлення замовлення</Heading>
+                    <Order>
+                        <Details>
+                            <SectionStyled>
+                                <CheckoutItems />
+                            </SectionStyled>
+                            <SectionStyled>
                                 <FlexRow marginBottom="0">
                                     <Left>
-                                        <SubSectionHeading>Адреса доставки:</SubSectionHeading>
+                                        <SubSectionHeading>Персональна інформація:</SubSectionHeading>
                                     </Left>
                                     <Right>
-                                        <Input hasLabel={false} />
+                                        <PersonalInformation></PersonalInformation>
                                     </Right>
                                 </FlexRow>
-                            </FlexColumn>
-                        </SectionStyled>
-                        <SectionStyled>
-                            <FlexRow marginBottom="0">
-                                <Left>
-                                    <SubSectionHeading>Виберіть спосіб оплати:</SubSectionHeading>
-                                </Left>
-                                <Right>
-                                    <Checkbox text="банківською картою при отриманні" />
-                                    <Checkbox text="готівкою при отриманні" />
-                                </Right>
-                            </FlexRow>
-                        </SectionStyled>
-                    </Details>
-                    <Total>
-                        <FlexColumnDecorated>
-                            <TotalHeading>Разом</TotalHeading>
-                            <FlexRow marginBottom="0">
-                                <TotalTextLine>2 товари на суму</TotalTextLine>
-                                <AmountTotal>300 грн</AmountTotal>
-                            </FlexRow>
-                            <FlexRow marginBottom="0">
-                                <TotalTextLine>Вартість доставки</TotalTextLine>
-                                <TotalTextLine>40 грн</TotalTextLine>
-                            </FlexRow>
-                        </FlexColumnDecorated>
-                        <FlexColumnDecorated>
-                            <FlexRow marginBottom="0">
-                                <TotalTextLine>До сплати:</TotalTextLine>
-                                <AmountToPay>340 грн</AmountToPay>
-                            </FlexRow>
-                            <Button backgroundColor='#FF8B00' textColor='white' onClick={() => { }} text='Замовлення підтверджую'></Button>
-                        </FlexColumnDecorated>
-                    </Total>
-                </Order>
-            </CheckoutStyled>
+                            </SectionStyled>
+                            <SectionStyled>
+                                <FlexColumn>
+                                    <FlexRow marginBottom="15px">
+                                        <Left>
+                                            <SubSectionHeading>Виберіть спосіб доставки:</SubSectionHeading>
+                                        </Left>
+                                        <Right>
+                                            <Checkbox text="Кур’єром по місту" />
+                                            <Checkbox text="Cамовивіз зі складу" />
+                                            <Checkbox text="Укрпошта" />
+                                            <Checkbox text="Нова пошта" />
+                                        </Right>
+                                    </FlexRow>
+                                    <FlexRow marginBottom="0">
+                                        <Left>
+                                            <SubSectionHeading>Адреса доставки:</SubSectionHeading>
+                                        </Left>
+                                        <Right>
+                                            <Input name="address" hasLabel={false} />
+                                        </Right>
+                                    </FlexRow>
+                                </FlexColumn>
+                            </SectionStyled>
+                            <SectionStyled>
+                                <FlexRow marginBottom="0">
+                                    <Left>
+                                        <SubSectionHeading>Виберіть спосіб оплати:</SubSectionHeading>
+                                    </Left>
+                                    <Right>
+                                        <Checkbox text="Банківською картою при отриманні" />
+                                        <Checkbox text="Готівкою при отриманні" />
+                                    </Right>
+                                </FlexRow>
+                            </SectionStyled>
+                        </Details>
+                        <Total>
+                            <FlexColumnDecorated>
+                                <TotalHeading>Разом</TotalHeading>
+                                <FlexRow marginBottom="0">
+                                    <TotalTextLine>2 товари на суму</TotalTextLine>
+                                    <AmountTotal>300 грн</AmountTotal>
+                                </FlexRow>
+                                <FlexRow marginBottom="0">
+                                    <TotalTextLine>Вартість доставки</TotalTextLine>
+                                    <TotalTextLine>40 грн</TotalTextLine>
+                                </FlexRow>
+                            </FlexColumnDecorated>
+                            <FlexColumnDecorated>
+                                <FlexRow marginBottom="0">
+                                    <TotalTextLine>До сплати:</TotalTextLine>
+                                    <AmountToPay>340 грн</AmountToPay>
+                                </FlexRow>
+                                <Button backgroundColor='#FF8B00' textColor='white' onClick={() => { }} text='Замовлення підтверджую'></Button>
+                            </FlexColumnDecorated>
+                        </Total>
+                    </Order>
+                </CheckoutStyled>
+            </Formik>
         )
     });
 
@@ -106,29 +122,15 @@ const CheckoutStyled = styled.div`
 `;
 
 const Heading = styled.h1`  
+    font-weight: normal;
     font-size: 20px;
-    font-weight: bolder;
+    margin: 0 2em 1em;
 `;
 
 const Order = styled.div`
     display: flex;   
 `;
 
-const CheckoutItems = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 0;   
-`;
-
-const PersonalInformationStyled = styled.div`
-    box-sizing: border-box;
-    display: flex;
-    aligh-items: baseline;
-    border: 1px solid #E8E8E8;
-    border-radius: 20px;
-    padding: 30px;
-    margin: 10px 0;
-`;
 
 const SectionStyled = styled.div`
     box-sizing: border-box;
@@ -136,8 +138,8 @@ const SectionStyled = styled.div`
     aligh-items: baseline;
     border: 1px solid #E8E8E8;
     border-radius: 20px;
-    padding: 30px;
-    margin: 0 0 15px;
+    padding: 31px;
+    margin: 0 0 24px;
 `;
 
 const Details = styled.div`
@@ -145,21 +147,6 @@ const Details = styled.div`
     flex-direction: column; 
     margin: 0 20px 0 0; 
     width: 756px;
-`;
-
-const Delivery = styled.div`
-    display: flex;  
-    flex-direction: column; 
-    border: 1px solid #E8E8E8;
-    border-radius: 20px; 
-    padding: 30px;
-`;
-
-const PaymentMethod = styled.div`
-    display: flex; 
-    border: 1px solid #E8E8E8;
-    border-radius: 20px;  
-    padding: 30px; 
 `;
 
 const Total = styled.div`

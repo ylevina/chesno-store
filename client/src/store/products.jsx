@@ -40,17 +40,17 @@ export const setFilterSuccess = payload => ({
 });
 
 export const setProducts = () => async dispatch => {
-    try {
-        const reqUrl = `/api/products`;
+    // try {
+    //     const reqUrl = `/api/products`;
 
-        const { status, data } = await Axios.get(reqUrl);
-        const prod = data;
-        if (status === 200) {
-            dispatch(setProductsSuccess(prod));
-        }
-    } catch (error) {
-        console.log(error);
-    }
+    //     const { status, data } = await Axios.get(reqUrl);
+    //     const prod = data;
+    //     if (status === 200) {
+    //         dispatch(setProductsSuccess(prod));
+    //     }
+    // } catch (error) {
+    //     console.log(error);
+    // }   
 }
 
 export const filterProducts = (category1, category2) => async dispatch => {

@@ -2,26 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-export const Modal = ({ id, closeButton, handleClose, header, text, actions }) => {
+export const Modal = ({ id, closeButton, handleClose, header, content }) => {
 
-  const handleModalClick = e => {
-    if (e.target.id == id) {
-      handleClose();
-    }
-  };
+  // const handleModalClick = e => {
+  //   if (e.target.id == id) {
+  //     handleClose();
+  //   }
+  // };
 
   return (
-    <Container id={id} onClick={handleModalClick}>
+    <Container id={id} >  {/*onClick={handleModalClick}*/}
       <Content>
         <Header>
           <Heading>{header}</Heading>
           {closeButton && <CloseButton onClick={handleClose}>&times;</CloseButton>}
         </Header>
         <Main>
-          <Message>{text}</Message>
-          <Actions>
-            {actions}
-          </Actions>
+          {content}
         </Main>
       </Content>
     </Container>
@@ -38,7 +35,7 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
-  closeButton: true  
+  closeButton: true
 };
 
 const Container = styled.div`
@@ -54,9 +51,9 @@ const Container = styled.div`
 
 const Content = styled.div` 
   color: black;
-  max-width: 520px; 
+  max-width: 580px; 
   margin: 15% auto;
-  border: 1px solid orange;
+  border: 1px solid #FF8B00;
   border-radius: 10px;
 `
 
@@ -69,15 +66,16 @@ const Header = styled.div`
 `
 
 const Heading = styled.h2` 
- font-weight: normal;  
+  font-weight: normal;  
 `
 
 const CloseButton = styled.span`  
-  font-size: 45px; 
+  font-size: 30px; 
   cursor: pointer;
   border-radius: 0 10px 0 0; 
-  background: orange;
+  background: #FF8B00;
   color: white;
+  padding: 0 0.3em 0.3em;
 `
 
 const Main = styled.div`  

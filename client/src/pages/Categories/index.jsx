@@ -3,29 +3,31 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { ProductCard } from '../../components/ProductCard';
 import { CategoriesList } from '../../components/CategoriesList';
-// import { Products } from '../../components/Products';
 
+import { createWishlist, selectWishlist } from '../../store/wishlist.jsx';
 import { setCategories, selectCategories } from '../../store/category.jsx';
 import { filterProducts, selectFilteredProducts } from '../../store/products.jsx';
 import { Color } from '../../components/Color';
 
 const mapStateToProps = state => ({
     categories: selectCategories(state),
-    products: selectFilteredProducts(state)
+    products: selectFilteredProducts(state),
+    wishlist: selectWishlist(state)
 });
 
-export const Categories = connect(mapStateToProps, { selectCategories, filterProducts })(
-    ({ categories, filterProducts, products }) => {
+export const Categories = connect(mapStateToProps, { selectCategories, filterProducts, selectWishlist, createWishlist })(
+    ({ categories, filterProducts, products, wishlist, createWishlist }) => {
 
         const [topCategory, setTopCategory] = useState('');
         const [secondaryCategory, setSecondaryCategory] = useState('');
         const [priceMin, setPriceMin] = useState(0);
-        const [priceMax, setPriceMax] = useState(100);
+        const [priceMax, setPriceMax] = useState(10000);
         const [price, setPrice] = useState({ min: 2, max: 10 });
         const [colorFilter, setColorFilter] = useState([]);
         const [colors, setColors] = useState([]);
 
         useEffect(() => {
+            console.log("useEffect filterProducts ");
             filterProducts(topCategory && topCategory.id,
                 secondaryCategory && secondaryCategory.id);
         }, [topCategory, secondaryCategory]);
@@ -43,8 +45,11 @@ export const Categories = connect(mapStateToProps, { selectCategories, filterPro
             if (priceMin) filteredProducts = filteredProducts.filter(el => el.currentPrice >= priceMin)
             if (priceMax) filteredProducts = filteredProducts.filter(el => el.currentPrice <= priceMax)
             if (colorFilter.length > 0) filteredProducts = filteredProducts.filter(el => colorFilter.includes(el.color))
+            console.log("FilteredProducts: ", filteredProducts);
             return filteredProducts;
         }
+
+        console.log("products: ", products);
 
         return (
             <CategoriesStyled>
@@ -74,7 +79,7 @@ export const Categories = connect(mapStateToProps, { selectCategories, filterPro
                             <MenuHeading>{topCategory.name}</MenuHeading>
                             <ListStyled>
                                 {categories.filter(el => el.level == 1 && el.parentId == topCategory.id).map(el => (
-                                    <ListItemStyled onClick={() => setSecondaryCategory(el)}>
+                                    <ListItemStyled key={el.id} onClick={() => setSecondaryCategory(el)}>
                                         <Checkbox isChecked={secondaryCategory && secondaryCategory.id == el.id}></Checkbox>
                                         <PStyled>{el.name}</PStyled>
                                     </ListItemStyled>))}
@@ -86,7 +91,7 @@ export const Categories = connect(mapStateToProps, { selectCategories, filterPro
                                 <NumberInputStyled type="number" step="any" />
                                 <NumberInputStyled type="number" step="any" />
                             </PriceInputs>
-                            <PriceSlider type="range"></PriceSlider>                           
+                            <PriceSlider type="range"></PriceSlider>
                         </PriceFilter>
                         <ColorFilter>
                             <p>Колір</p>
@@ -96,15 +101,16 @@ export const Categories = connect(mapStateToProps, { selectCategories, filterPro
                         </ColorFilter>
                     </Filter>
                     <Products>
-                        {/* <ListStyled> */}
-                        {
+                        {                           
                             filter(products).map(el => (<ListItemStyled>
-                                <ProductCard key={el.id}
-                                    imgUrl={el.imageUrls[0]}
-                                    name={el.name}
-                                    price={el.currentPrice}
-                                />
-                            </ListItemStyled>))}
+                            <ProductCard key={el.itemNo}
+                                id={el.itemNo}
+                                imgUrl={el.imageUrls[0]}
+                                name={el.name}
+                                price={el.currentPrice}
+                                onClick={(el) => { createWishlist([el._id]) }}
+                            />
+                        </ListItemStyled>))}
                         {/* </ListStyled> */}
                     </Products>
                 </Main>

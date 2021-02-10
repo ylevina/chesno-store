@@ -6,18 +6,20 @@ import { ListItemStyled } from './ListItemStyled.jsx';
 import { LinkStyled } from './LinkStyled.jsx';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingBag, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
+import { Button } from './Button.jsx';
+import { Modal } from './Modal.jsx';
+import { Auth } from '../pages/Auth';
 
 export const Header = () => {
     const [showCategories, setShowCategories] = useState(false);
+    const [showLogIn, setShowLogIn] = useState(false);
 
     return (
         <HeaderStyled className='header'>
             <HeaderTop className='header__top'>
                 <Contacts className='header-top__contacts'>
-                    <StyledFontAwesomeIcon icon={faPhoneAlt}></StyledFontAwesomeIcon>
+                    <img src='/img/phone.svg' alt='phone icon'></img>
                     <p>+38 (067) 833 16 62, Пн - Нд, 10:00 - 20:00</p>
                 </Contacts>
                 <ListStyled className='header-top__menu'>
@@ -45,13 +47,13 @@ export const Header = () => {
                 </ListStyled>
             </HeaderTop>
             <HeaderBottom className='header__bottom'>
-                <LogoWrap className='header-bottom__logo'>
+                <LogoWrap className='header-bottom__logo' to='/'>
                     <div>
-                        <LogoImageOne src='./img/header/chesnoback7.png' alt="cartoon dog" />
+                        <LogoImageOne src='/img/logo/happy_doggo.svg' alt='cartoon dog' />
                     </div>
                     <LogoTextWrap>
-                        <LogoImageTwo src='./img/header/chesnoback5.png' alt="chesno" />
-                        <LogoImageThree src='./img/header/chesnoback6.png' alt="store" />
+                        <LogoImageTwo src='/img/logo/chesno.svg' alt='chesno' />
+                        <LogoImageThree src='/img/logo/store.svg' alt='store' />
                     </LogoTextWrap>
                 </LogoWrap>
                 <Categories className='header-bottom__category-menu'>
@@ -72,12 +74,16 @@ export const Header = () => {
                     <button>Search</button>
                 </SearchForm>
                 <div className='header-bottom__personal'>
-                    <LinkStyled to="/favorites"><StyledFontAwesomeIcon icon={faHeart}></StyledFontAwesomeIcon></LinkStyled>
-                    <LinkStyled to='/cart'><StyledFontAwesomeIcon icon={faShoppingBag}></StyledFontAwesomeIcon></LinkStyled>
+                    <LinkStyled right="10px" to="/wishlist"><img src='/img/heart.svg' alt='heart icon'/></LinkStyled>
+                    <LinkStyled to='/cart'><img src='/img/shopping_bag.svg' alt='shopping bag icon'/></LinkStyled>
                     {/* <Button></Button> */}
                 </div>
+                <Button text="Log in" backgroundColor="#FF8B00;" textColor="white" onClick={()=> {setShowLogIn(true)}}/>
             </HeaderBottom>
+            {showLogIn && <Modal id="" handleClose={()=> {setShowLogIn(false)}} content={<Auth/>}></Modal>}
+            
         </HeaderStyled>
+        
     )
 }
 
@@ -131,7 +137,7 @@ const ListStyled = styled.ul`
     }
 `;
 
-const LogoWrap = styled.div`
+const LogoWrap = styled(Link)`
     display: flex;
     justify-content: space-between;
     img {

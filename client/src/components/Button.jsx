@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Button = ({ backgroundColor, textColor, onClick, text }) => {
+export const Button = ({ type, backgroundColor, textColor, onClick, text, hide }) => {
   return (
-    <StyledButton backgroundColor={backgroundColor} textColor={textColor} onClick={onClick}>{text}</StyledButton>
+    <StyledButton type={type} backgroundColor={backgroundColor} textColor={textColor} onClick={onClick} hide={hide}>{text}</StyledButton>
   );
 }
 
@@ -17,5 +17,6 @@ const StyledButton = styled.button`
   padding: 1em 1.5em;
   min-width: 100px; 
   cursor: pointer; 
+  display: ${props => (props.hide)? 'none' : 'block'};
 `
 //margin: 10px;

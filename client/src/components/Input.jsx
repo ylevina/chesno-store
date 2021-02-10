@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Field } from 'formik';
 
-export const Input = ({ hasLabel, label }) => {
+export const Input = ({ hasLabel = true, label, name, placeholder }) => {
     return (
         <InputWrapper>
-            { hasLabel && <label for="name">{label}</label> }
-            <InputStyled type="text" id="name" name="name" />
+            {hasLabel && <label for="name" >{label}</label>}
+            <InputStyled name={name} placeholder={placeholder} />
         </InputWrapper>
     );
 }
@@ -22,11 +23,12 @@ const InputWrapper = styled.div`
     }
 `;
 
-const InputStyled = styled.input`
-    width: 400px;
+const InputStyled = styled(Field)`
+    
     height: 40px;
     border: 2px solid #E8E8E8;
     box-sizing: border-box;
     border-radius: 20px;
     padding: 0 1.5em;
 `;
+//width: 400px;

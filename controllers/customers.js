@@ -97,7 +97,7 @@ exports.loginCustomer = async (req, res, next) => {
     .then(customer => {
       // Check for customer
       if (!customer) {
-        errors.loginOrEmail = "Customer not found";
+        errors.loginOrEmail = `Customer ${loginOrEmail} not found`;
         return res.status(404).json(errors);
       }
 
@@ -118,7 +118,7 @@ exports.loginCustomer = async (req, res, next) => {
             keys.secretOrKey,
             { expiresIn: 36000 },
             (err, token) => {
-              res.json({
+              res.json({              
                 success: true,
                 token: "Bearer " + token
               });

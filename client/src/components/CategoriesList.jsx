@@ -17,7 +17,7 @@ export const CategoriesList = connect(mapStateToProps, { setCategories })(
         }, []);
 
         return (
-            <ListStyled>{categories.map(element => (<li>{element.name}</li>))}</ListStyled>
+            <ListStyled>{categories.map(element => (<li key={element.id}>{element.name}</li>))}</ListStyled>
         )
     });
 

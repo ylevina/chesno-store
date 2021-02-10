@@ -15,32 +15,32 @@ export const Home = () => (
             <PopularProducts>
                 <ProductCard
                     name='Багаторазова авоська для покупок'
-                    imgUrl='./img/products/home/Rectangle55.png'
+                    imgUrl='/img/products/home/Rectangle55.png'
                     price='60 грн'
                 />
                 <ProductCard
                     name='Дерев’яна зубна щітка з бамбуку'
-                    imgUrl='./img/products/sanitary/image11.png'
+                    imgUrl='/img/products/sanitary/image11.png'
                     price='75 грн'
                 />
                 <ProductCard
                     name='Дерев’яний столовий набір'
-                    imgUrl='./img/products/home/Rectangle77.png'
+                    imgUrl='/img/products/home/Rectangle77.png'
                     price='90 грн'
                 />
                 <ProductCard
                     name='Сукня із перероблених матеріалів'
-                    imgUrl='./img/products/clothes/image11.png'
+                    imgUrl='/img/products/clothes/image11.png'
                     price='800 грн'
                 />
                 <ProductCard
                     name='Косметичка із водонепроникного паперу Raw Flaw'
-                    imgUrl='./img/products/sanitary/image12.png'
+                    imgUrl='/img/products/sanitary/image12.png'
                     price='60 грн'
                 />
                 <ProductCard
                     name='Сонцезахисні окулярі з кавових зерен'
-                    imgUrl='./img/products/clothes/image13.png'
+                    imgUrl='/img/products/clothes/image13.png'
                     price='2650 грн'
                 />
             </PopularProducts>
@@ -51,28 +51,28 @@ export const Home = () => (
                 description='Речі, які дозволять зменьшити кількість побутових відходів до мінімуму'
                 buttonText='Про набір'
                 url='/category'
-                imgUrl='./img/products/basics/main.png'
+                imgUrl='/img/products/basics/main.png'
             />
             <CategoryCard
                 name='Одяг та аксесуари'
                 description='З перероблених матеріалів, які дозволять бути більш свідомим у тому що носиш'
                 buttonText='Більше'
                 url='/category'
-                imgUrl='./img/products/clothes/main.png'
+                imgUrl='/img/products/clothes/main.png'
             />
             <CategoryCard
                 name='Засоби гігієни'
                 description='Безліч засобів особистої гігієни, які не шкодять довкіллю за найнижчими цінами'
                 buttonText='Більше'
                 url='/category'
-                imgUrl='./img/products/sanitary/main.png'
+                imgUrl='/img/products/sanitary/main.png'
             />
             <CategoryCard
                 name='Для дому'
                 description='Все що потрібно для того щоб правильно організувати та зменьшити кількість відходів'
                 buttonText='Більше'
                 url='/category'
-                imgUrl='./img/products/home/main.png'
+                imgUrl='/img/products/home/main.png'
             />
         </PopularCategories>
     </HomeStyled>
