@@ -52,7 +52,7 @@ const Container = styled.div`
 const Content = styled.div` 
   color: black;
   max-width: 580px; 
-  margin: 15% auto;
+  margin: 7% auto;
   border: 1px solid #FF8B00;
   border-radius: 10px;
 `

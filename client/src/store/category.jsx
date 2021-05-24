@@ -1,4 +1,5 @@
-import Axios from "axios";
+import { storeServer } from "../services/storeAPI";
+
 
 const SET_CATEGORIES = 'SET_CATEGORIES';
 
@@ -28,9 +29,9 @@ export const setCategoriesSuccess = payload => ({
 
 export const setCategories = () => async dispatch => {
     try {
-        const reqUrl = `/api/catalog`;
+        const reqUrl = `/catalog`;
       
-        const { status, data } = await Axios.get(reqUrl);
+        const { status, data } = await storeServer.get(reqUrl);
         const cat = data;
 
         if (status === 200) {

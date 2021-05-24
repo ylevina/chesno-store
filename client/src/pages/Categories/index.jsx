@@ -6,17 +6,17 @@ import { CategoriesList } from '../../components/CategoriesList';
 
 import { createWishlist, selectWishlist } from '../../store/wishlist.jsx';
 import { setCategories, selectCategories } from '../../store/category.jsx';
-import { filterProducts, selectFilteredProducts } from '../../store/products.jsx';
+import { getProducts, selectProducts } from '../../store/products.jsx';
 import { Color } from '../../components/Color';
 
 const mapStateToProps = state => ({
     categories: selectCategories(state),
-    products: selectFilteredProducts(state),
+    products: selectProducts(state),
     wishlist: selectWishlist(state)
 });
 
-export const Categories = connect(mapStateToProps, { selectCategories, filterProducts, selectWishlist, createWishlist })(
-    ({ categories, filterProducts, products, wishlist, createWishlist }) => {
+export const Categories = connect(mapStateToProps, { selectCategories, getProducts, selectWishlist, createWishlist })(
+    ({ categories, getProducts, products, wishlist, createWishlist }) => {
 
         const [topCategory, setTopCategory] = useState('');
         const [secondaryCategory, setSecondaryCategory] = useState('');
@@ -28,7 +28,7 @@ export const Categories = connect(mapStateToProps, { selectCategories, filterPro
 
         useEffect(() => {
             console.log("useEffect filterProducts ");
-            filterProducts(topCategory && topCategory.id,
+            getProducts(topCategory && topCategory.id,
                 secondaryCategory && secondaryCategory.id);
         }, [topCategory, secondaryCategory]);
 

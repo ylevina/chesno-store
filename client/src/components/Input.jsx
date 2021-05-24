@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Field } from 'formik';
 
-export const Input = ({ hasLabel = true, label, name, placeholder }) => {
+export const Input = ({ hasLabel = true, type, label, name, placeholder }) => {
     return (
         <InputWrapper>
             {hasLabel && <label for="name" >{label}</label>}
-            <InputStyled name={name} placeholder={placeholder} />
+            <InputStyled type={type} name={name} placeholder={placeholder} />
         </InputWrapper>
     );
 }

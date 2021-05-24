@@ -9,7 +9,7 @@ import { LoginForm } from './LoginForm';
 import { RegistrationForm } from './RegistrationForm';
 import { useState } from 'react';
 
-export const Auth = connect(null, { signIn, signUp })(({ signIn, signUp }) => {
+export const Auth = connect(null, { signIn, signUp })(({ handleClose, signIn, signUp }) => {
 
     const [isRegistration, setIsRegistration] = useState(false);
 
@@ -41,8 +41,8 @@ export const Auth = connect(null, { signIn, signUp })(({ signIn, signUp }) => {
                 <Tab highlight={isRegistration} onClick={() => { setIsRegistration(true) }}>Реєстрація</Tab>
             </Tabs>
             <FormContainer>
-                {isRegistration && <RegistrationForm />}
-                {!isRegistration && <LoginForm />}
+                {isRegistration && <RegistrationForm handleClose={handleClose}/>}
+                {!isRegistration && <LoginForm handleClose={handleClose}/>}
             </FormContainer>
         </Container>
     )

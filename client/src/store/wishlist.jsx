@@ -1,4 +1,5 @@
-import Axios from "axios";
+import { storeServer } from "../services/storeAPI";
+
 import { selectUserToken } from "./auth";
 
 const CREATE_WISHLIST = 'CREATE_WISHLIST';
@@ -15,6 +16,16 @@ const initialState = {
 export function reducer(state = initialState, { type, payload }) {
     switch (type) {
         case CREATE_WISHLIST:
+            return {
+                ...state,
+                wishlist: payload
+            }
+        case ADD_TO_WISHLIST:
+            return {
+                ...state,
+                wishlist: payload
+            }
+        case GET_WISHLIST:
             return {
                 ...state,
                 wishlist: payload
@@ -44,9 +55,9 @@ export const createWishlist = (wishlist) => async (_, getState, dispatch) => {
         const state = getState();
         const token = selectUserToken(state);
 
-        const reqUrl = `/api/wishlist`;
+        const reqUrl = `/wishlist`;
 
-        const { status, data } = await Axios.post(reqUrl, wishlist, { headers: { 'Authorization': token } });
+        const { status, data } = await storeServer.post(reqUrl, wishlist);
         const wish = data;
 
         if (status === 200) {
@@ -61,9 +72,9 @@ export const createWishlist = (wishlist) => async (_, getState, dispatch) => {
 
 export const addToWishlist = (productId) => async dispatch => {
     try {
-        const reqUrl = `/api/wishlist/${productId}`;
+        const reqUrl = `/wishlist/${productId}`;
 
-        const { status, data } = await Axios.put(reqUrl);
+        const { status, data } = await storeServer.put(reqUrl);
         const fav = data;
 
         if (status === 200) {
@@ -80,8 +91,8 @@ export const getWishlist = () => async (_, getState, dispatch) => {
         const state = getState();
         const token = selectUserToken(state);
 
-        const reqUrl = `/api/wishlist`;
-        const { status, data } = await Axios.get(reqUrl, { headers: { 'Authorization': token } });
+        const reqUrl = `/wishlist`;
+        const { status, data } = await storeServer.get(reqUrl);
         const fav = data;
         console.log("get wishlist", fav);
         if (status === 200) {

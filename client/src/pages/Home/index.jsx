@@ -4,13 +4,21 @@ import { Link } from 'react-router-dom';
 
 import { CategoryCard } from '../../components/CategoryCard';
 import { ProductCard } from '../../components/ProductCard';
+import { Section } from '../../components/Section';
+import { Banner } from './Banner';
+import { FontSize, FontWeight, FontColor, BackgroundColor } from '../../variables.js'
 
 export const Home = () => (
     <HomeStyled>
-        <PopularProductsSection>
+        <Section>
+            <Banner>
+
+            </Banner>
+        </Section>
+        <Section>
             <SectionHeader>
                 <Heading>Користуються попитом</Heading>
-                <LinkStyled to="/categories">Більше категорій</LinkStyled>      
+                <LinkStyled to="/categories">Всі товари</LinkStyled>
             </SectionHeader>
             <PopularProducts>
                 <ProductCard
@@ -44,39 +52,46 @@ export const Home = () => (
                     price='2650 грн'
                 />
             </PopularProducts>
-        </PopularProductsSection>
-        <PopularCategories>
-            <CategoryCard
-                name='Базовий набір'
-                description='Речі, які дозволять зменьшити кількість побутових відходів до мінімуму'
-                buttonText='Про набір'
-                url='/category'
-                imgUrl='/img/products/basics/main.png'
-            />
-            <CategoryCard
-                name='Одяг та аксесуари'
-                description='З перероблених матеріалів, які дозволять бути більш свідомим у тому що носиш'
-                buttonText='Більше'
-                url='/category'
-                imgUrl='/img/products/clothes/main.png'
-            />
-            <CategoryCard
-                name='Засоби гігієни'
-                description='Безліч засобів особистої гігієни, які не шкодять довкіллю за найнижчими цінами'
-                buttonText='Більше'
-                url='/category'
-                imgUrl='/img/products/sanitary/main.png'
-            />
-            <CategoryCard
-                name='Для дому'
-                description='Все що потрібно для того щоб правильно організувати та зменьшити кількість відходів'
-                buttonText='Більше'
-                url='/category'
-                imgUrl='/img/products/home/main.png'
-            />
-        </PopularCategories>
+        </Section>      
+        <Section>
+            <SectionHeader>
+                <Heading>Популярні категорії товарів</Heading>
+                <LinkStyled to="/categories">Всі категорії</LinkStyled>
+            </SectionHeader>
+            <PopularCategories>
+                <CategoryCard
+                    name='Базовий набір'
+                    description='Речі, які дозволять зменьшити кількість побутових відходів до мінімуму'
+                    buttonText='Про набір'
+                    url='/category'
+                    imgUrl='/img/products/basics/main.png'
+                />
+                <CategoryCard
+                    name='Одяг та аксесуари'
+                    description='З перероблених матеріалів, які дозволять бути більш свідомим у тому що носиш'
+                    buttonText='Більше'
+                    url='/category'
+                    imgUrl='/img/products/clothes/main.png'
+                />
+                <CategoryCard
+                    name='Засоби гігієни'
+                    description='Безліч засобів особистої гігієни, які не шкодять довкіллю за найнижчими цінами'
+                    buttonText='Більше'
+                    url='/category'
+                    imgUrl='/img/products/sanitary/main.png'
+                />
+                <CategoryCard
+                    name='Для дому'
+                    description='Все що потрібно для того щоб правильно організувати та зменьшити кількість відходів'
+                    buttonText='Більше'
+                    url='/category'
+                    imgUrl='/img/products/home/main.png'
+                />
+            </PopularCategories>
+        </Section>
+
     </HomeStyled>
-)
+);
 
 const HomeStyled = styled.div`
     display: flex;
@@ -84,40 +99,40 @@ const HomeStyled = styled.div`
     align-items: center;
 `;
 
-const PopularProductsSection = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 1200px;
-    margin-bottom: 30px;
-`;
-
 const SectionHeader = styled.div`
     display: flex;
-    justify-content: space-between;   
+    justify-content: space-between;
+    align-items: center;   
 `;
 
 const Heading = styled.h3`
-    font-size: 38px;
-    margin: 0;    
+    font-size: ${FontSize.XL};
+    font-weight: 600;
+    margin: 0 0 0.6em;    
 `;
 
 const LinkStyled = styled(Link)`
     font-size: 18px;
     text-decoration: none;
     color: black;
+    ::after {
+        content: '→';
+        color: red;
+        margin: 0 0 0 5px;      
+    }
 `;
 
 const PopularProducts = styled.div`
-    display: flex;
+    display: flex;    
     justify-content: space-between;
-    width: 1200px;
-    margin-bottom: 30px;
+    align-items: flex-start;
+       
 `;
 
 const PopularCategories = styled.div`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    width: 1200px;
+    width: 1180px;
     margin-bottom: 30px;
 `;

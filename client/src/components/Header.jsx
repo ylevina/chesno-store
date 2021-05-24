@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import { Button } from './Button.jsx';
 import { Modal } from './Modal.jsx';
 import { Auth } from '../pages/Auth';
+import { CategoriesMenu } from './CategoriesMenu.jsx';
+import { Burger, Menu } from './index';
 
 export const Header = () => {
     const [showCategories, setShowCategories] = useState(false);
@@ -19,8 +21,8 @@ export const Header = () => {
         <HeaderStyled className='header'>
             <HeaderTop className='header__top'>
                 <Contacts className='header-top__contacts'>
-                    <img src='/img/phone.svg' alt='phone icon'></img>
-                    <p>+38 (067) 833 16 62, Пн - Нд, 10:00 - 20:00</p>
+                    <IconStyled src='/img/phone.svg' alt='phone icon'></IconStyled>
+                    <p>+38 (067) 833 1662, Пн - Нд, 10:00 - 20:00</p>
                 </Contacts>
                 <ListStyled className='header-top__menu'>
                     <ListItemStyled>
@@ -57,6 +59,8 @@ export const Header = () => {
                     </LogoTextWrap>
                 </LogoWrap>
                 <Categories className='header-bottom__category-menu'>
+                    <CategoriesMenu></CategoriesMenu>
+
                     <CategoryMenu onClick={() => setShowCategories(!showCategories)}>
                         <Accordion >
                             <span></span>
@@ -80,7 +84,7 @@ export const Header = () => {
                 </div>
                 <Button text="Log in" backgroundColor="#FF8B00;" textColor="white" onClick={()=> {setShowLogIn(true)}}/>
             </HeaderBottom>
-            {showLogIn && <Modal id="" handleClose={()=> {setShowLogIn(false)}} content={<Auth/>}></Modal>}
+            {showLogIn && <Modal id="" handleClose={()=> {setShowLogIn(false)}} content={<Auth handleClose={()=> {setShowLogIn(false)}}/>}></Modal>}
             
         </HeaderStyled>
         
@@ -99,6 +103,7 @@ const HeaderStyled = styled.header`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 14px;
 `;
 
 const HeaderTop = styled.div`
@@ -108,8 +113,15 @@ const HeaderTop = styled.div`
     border-radius: 0px 0px 20px 20px;
     width: 1180px;
     font-size: 14px; 
+    font-weight: 300;
     margin-bottom: 30px; 
     padding: 0 15px;  
+
+    > ul, p {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+
 `;
 
 const Contacts = styled.div`
@@ -132,6 +144,7 @@ const HeaderBottom = styled.div`
 const ListStyled = styled.ul`
     display: flex;   
     list-style-type: none;
+    
     li:not(:last-child) {
         margin-right: 20px; 
     }
@@ -140,8 +153,9 @@ const ListStyled = styled.ul`
 const LogoWrap = styled(Link)`
     display: flex;
     justify-content: space-between;
+    
     img {
-        margin: 0 9px 6px 0;
+        margin: 0 12px 6px 0;
     }
 `;
 const LogoImageOne = styled.img`
@@ -186,4 +200,10 @@ const Accordion = styled.div`
 const SearchForm = styled.div`
     border: 1px solid #FF8B00;
     border-radius: 20px;
+`;
+
+const IconStyled = styled.img`
+    width: 16px;
+    height: 16px;
+    margin: 0 10px;
 `;

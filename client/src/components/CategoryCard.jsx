@@ -11,7 +11,7 @@ export const CategoryCard = ({ name, description, imgUrl, buttonText, url }) => 
                     <DescriptionStyled>{description}</DescriptionStyled>
                 </TextWrap>
                 <ButtonWrap>
-                    <Button backgroundColor={'#FF8B00'} onClick={ () => { }} text={buttonText}></Button>
+                    <Button backgroundColor={'#FF8B00'} textColor='white' onClick={ () => { }} text={buttonText}></Button>
                 </ButtonWrap>
             </DetailsStyled>
         </StyledCard>
@@ -43,19 +43,19 @@ const DetailsStyled = styled.div`
 `;
 
 const TextWrap = styled.div`
-    width: 55%;
+    width: 60%;
 `;
 
 const ButtonWrap = styled.div`
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    width: 45%;
+    width: 40%;
     bottom: 0px;
 `;
 
 const HeadingStyled = styled.h3`
-
+    margin: 0 0 1em;
 `;
 
 const DescriptionStyled = styled.p`

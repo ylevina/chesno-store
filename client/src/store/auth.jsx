@@ -1,4 +1,4 @@
-import Axios from "axios";
+import { storeServer } from "../services/storeAPI";
 
 const SET_AUTH_SUCCESS = 'SET_AUTH_SUCCESS';
 const SET_LOG_OUT = 'SET_LOG_OUT';
@@ -38,20 +38,31 @@ export const setLogOut = () => ({
 
 export const signIn = ({ loginOrEmail, password }) => async dispatch => {
     try {
-        const reqUrl = `/api/customers/login`;
+        const reqUrl = `/customers/login`;
         const reqData = {
             loginOrEmail,
             password
         };
         console.log("reqData:", reqData);
-        const { status, data } = await Axios.post(reqUrl, reqData);
+        const { status, data } = await storeServer.post(reqUrl, reqData);
         const token = data.token;
         console.log("token:", token);
         if (status === 200) {
             dispatch(setAuthSuccess({
                 token
             }));
+
+            storeServer.defaults.headers.common.Authorization = token;
         }
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const logOut = () => async dispatch => {
+    try {
+        storeServer.defaults.headers.common.Authorization = '';
 
     } catch (error) {
         console.log(error);
@@ -69,10 +80,10 @@ export const signUp = ({ firstName, lastName, login, email, password }) => async
             password
         };
 
-        const { status, data } = await Axios.post(reqUrl, reqData);
+        const { status, data } = await storeServer.post(reqUrl, reqData);
 
         if (status === 200) {
-           
+
         }
 
     } catch (error) {

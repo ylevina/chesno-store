@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import { setCategories, selectCategories } from '../../store/category.jsx';
-import { filterProducts, selectFilteredProducts } from '../../store/products.jsx';
+import { getProducts, selectProducts } from '../../store/products.jsx';
 
 import { Button } from '../../components/Button';
 import { Checkbox } from '../../components/Checkbox';
@@ -14,7 +14,7 @@ import { Formik } from 'formik';
 
 const mapStateToProps = state => ({
     categories: selectCategories(state),
-    products: selectFilteredProducts(state)
+    products: selectProducts(state)
 });
 
 // if logged In get initial values of personal information from user profile info
@@ -33,8 +33,8 @@ const onSubmit = (values) => {
     // checkout();
 }
 
-export const Checkout = connect(mapStateToProps, { selectCategories, filterProducts })(
-    ({ categories, filterProducts, products }) => {
+export const Checkout = connect(mapStateToProps, { selectCategories, getProducts })(
+    ({ categories, getProducts, products }) => {
         return (
             <Formik>
                 <CheckoutStyled>

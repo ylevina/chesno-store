@@ -5,16 +5,16 @@ import { connect } from 'react-redux';
 import { CartItem } from '../../components/CartItem';
 
 import { setCategories, selectCategories } from '../../store/category.jsx';
-import { filterProducts, selectFilteredProducts } from '../../store/products.jsx';
+import { getProducts, selectProducts } from '../../store/products.jsx';
 import { Button } from '../../components/Button';
 
 const mapStateToProps = state => ({
     categories: selectCategories(state),
-    products: selectFilteredProducts(state)
+    products: selectProducts(state)
 });
 
-export const Cart = connect(mapStateToProps, { selectCategories, filterProducts })(
-    ({ categories, filterProducts, products }) => {
+export const Cart = connect(mapStateToProps, { selectCategories, getProducts })(
+    ({ categories, getProducts, products }) => {
 
         const [topCategory, setTopCategory] = useState('');
 

@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { selectFilteredProducts, filterProducts } from '../../store/products.jsx';
+import { selectProducts, getProducts } from '../../store/products.jsx';
 import { Button } from '../../components/Button';
 import { ProductCard } from '../../components/ProductCard';
 import { CategoriesList } from '../../components/CategoriesList';
@@ -14,14 +14,14 @@ import { Color } from '../../components/Color';
 import { LinkStyled } from '../../components/LinkStyled';
 
 const mapStateToProps = state => ({
-    products: selectFilteredProducts(state)
+    products: selectProducts(state)
 });
 
-export const Product = connect(mapStateToProps, { filterProducts })(
-    ({ filterProducts, products, match }) => {
+export const Product = connect(mapStateToProps, { getProducts })(
+    ({ getProducts, products, match }) => {
 
         useEffect(() => {
-            if(products.length == 0) filterProducts();
+            if (products.length == 0) getProducts();
         }, []);
 
         const baseUrl = '/img/products/home/bowl';
@@ -103,7 +103,7 @@ export const Product = connect(mapStateToProps, { filterProducts })(
                                         backgroundColor={'#FF8B00'}
                                         textColor="white"
                                         onClick={() => { }}
-                                        text={<span>Додати в корзину <LinkStyled marginRight="10px"><img src='/img/cart_add.svg' alt='add to cart icon' /></LinkStyled></span>}>
+                                        text={<><span>Додати в корзину </span> <img src='/img/cart_add.svg' alt='add to cart icon' /></>}>
                                     </Button>
                                     {false && <Button
                                         backgroundColor={'white'}
@@ -121,17 +121,11 @@ export const Product = connect(mapStateToProps, { filterProducts })(
                                             <li> <Color size={'32px'} backgroundColor={'#8B7040'} onClick={() => { }} /></li>
                                         </ListStyled>
                                     </Colors>
-                                    <Size>
+                                    {product.size && <Size>
                                         <FeatureNameSmall>Розмір, см:</FeatureNameSmall>
-                                        <SizeList>
-                                            <SizeItem>15</SizeItem>
-                                            <SizeItem>20</SizeItem>
-                                            <SizeItem>25</SizeItem>
-                                            <SizeItem>30</SizeItem>
-                                            <SizeItem>30+</SizeItem>
-                                        </SizeList>
+                                        <SizeList> {product.size.map(el => <SizeItem>{el}</SizeItem>)}</SizeList>
                                         <p>В наявності <Quantity>{product.quantity}</Quantity> товарів із заданими параметрами</p>
-                                    </Size>
+                                    </Size>}
                                     <Additional>
                                         <FeatureNameSmall>Корисні поради по використанню:</FeatureNameSmall>
                                         <VerticalList>
@@ -143,9 +137,7 @@ export const Product = connect(mapStateToProps, { filterProducts })(
                                 </Right>
                             </ProductDetails>
                             <Related>
-                                <RelatedHeader>
-                                    З цим товаром часто купують
-                            </RelatedHeader>
+                                <RelatedHeader>З цим товаром часто купують</RelatedHeader>
                                 <RelatedProducts>
                                     <ProductCard
                                         name='Багаторазова авоська для покупок'
