@@ -23,8 +23,7 @@ const InputWrapper = styled.div`
     }
 `;
 
-const InputStyled = styled(Field)`
-    
+const InputStyled = styled(Field)`    
     height: 40px;
     border: 2px solid #E8E8E8;
     box-sizing: border-box;

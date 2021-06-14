@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Logo from './Logo.jsx';
 import { CategoriesList } from './CategoriesList.jsx';
 import { ListItemStyled } from './ListItemStyled.jsx';
 import { LinkStyled } from './LinkStyled.jsx';
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
 import { Button } from './Button.jsx';
 import { Modal } from './Modal.jsx';
 import { Auth } from '../pages/Auth';
-import { CategoriesMenu } from './CategoriesMenu.jsx';
-import { Burger, Menu } from './index';
+import { Search } from './Search.jsx';
+import { BurgerMenu } from './BurgerMenu.jsx';
 
 export const Header = () => {
     const [showCategories, setShowCategories] = useState(false);
@@ -59,35 +59,27 @@ export const Header = () => {
                     </LogoTextWrap>
                 </LogoWrap>
                 <Categories className='header-bottom__category-menu'>
-                    <CategoriesMenu></CategoriesMenu>
-
                     <CategoryMenu onClick={() => setShowCategories(!showCategories)}>
-                        <Accordion >
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </Accordion>
-                        <span>Категорії</span>
+                        <BurgerMenu></BurgerMenu>                        
+                        <TextStyled>Категорії</TextStyled>
                     </CategoryMenu>
                     <div>
                         {showCategories && <CategoriesList></CategoriesList>}
                     </div>
                 </Categories>
-                <SearchForm className='header-bottom__search-form'>
-                    <input type="text" placeholder='Я шукаю...' />
-                    <button>Search</button>
-                </SearchForm>
-                <div className='header-bottom__personal'>
-                    <LinkStyled right="10px" to="/wishlist"><img src='/img/heart.svg' alt='heart icon'/></LinkStyled>
-                    <LinkStyled to='/cart'><img src='/img/shopping_bag.svg' alt='shopping bag icon'/></LinkStyled>
-                    {/* <Button></Button> */}
-                </div>
-                <Button text="Log in" backgroundColor="#FF8B00;" textColor="white" onClick={()=> {setShowLogIn(true)}}/>
+                <Search />
+                <Personal className='header-bottom__personal'>
+                    <UserLists>
+                        <LinkStyled right="10px" to="/wishlist"><img src='/img/heart.svg' alt='heart icon' /></LinkStyled>
+                        <LinkStyled to='/cart'><img src='/img/shopping_bag.svg' alt='shopping bag icon' /><TextStyled>Кошик</TextStyled></LinkStyled>
+                    </UserLists>
+                    <Button text="Log in" backgroundColor="#FF8B00;" textColor="white" onClick={() => { setShowLogIn(true) }} />
+                </Personal>
             </HeaderBottom>
-            {showLogIn && <Modal id="" handleClose={()=> {setShowLogIn(false)}} content={<Auth handleClose={()=> {setShowLogIn(false)}}/>}></Modal>}
-            
+            {showLogIn && <Modal id="" handleClose={() => { setShowLogIn(false) }} content={<Auth handleClose={() => { setShowLogIn(false) }} />}></Modal>}
+
         </HeaderStyled>
-        
+
     )
 }
 
@@ -121,7 +113,6 @@ const HeaderTop = styled.div`
         margin-top: 0.5em;
         margin-bottom: 0.5em;
     }
-
 `;
 
 const Contacts = styled.div`
@@ -182,28 +173,43 @@ const LogoTextWrap = styled.div`
 const Categories = styled.div`
     display: flex;
     border: 1px solid #FF8B00;
-    border-radius: 20px;
-    padding: 10px 20px;
+    border-radius: 25px;
+    padding: 10px 15px;
 `;
 
 const CategoryMenu = styled.div`
-    display: flex;    
-`;
-
-const Accordion = styled.div`
-    border: 1px solid red;
-    background: red;
-    height: 15px;
-    width: 15px;
-`;
-
-const SearchForm = styled.div`
-    border: 1px solid #FF8B00;
-    border-radius: 20px;
+    display: flex;  
+    align-items: center;  
 `;
 
 const IconStyled = styled.img`
     width: 16px;
     height: 16px;
     margin: 0 10px;
+`;
+
+const Personal = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: 20%;      
+`;
+
+const UserLists = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: 60%;
+    svg {
+        font-size: 14px;
+        margin: 0 10px;
+    }   
+`;
+
+const TextStyled = styled.p`
+    font-family: Nunito;
+    font-size: 16px;
+    font-weight: 700;
+    color: black;
+    margin: 0 0.5em 0 1em;
 `;

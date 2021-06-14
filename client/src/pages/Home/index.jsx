@@ -11,9 +11,7 @@ import { FontSize, FontWeight, FontColor, BackgroundColor } from '../../variable
 export const Home = () => (
     <HomeStyled>
         <Section>
-            <Banner>
-
-            </Banner>
+            <Banner />
         </Section>
         <Section>
             <SectionHeader>
@@ -102,7 +100,8 @@ const HomeStyled = styled.div`
 const SectionHeader = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: center;   
+    align-items: center;  
+    color: #333333; 
 `;
 
 const Heading = styled.h3`
@@ -125,14 +124,13 @@ const LinkStyled = styled(Link)`
 const PopularProducts = styled.div`
     display: flex;    
     justify-content: space-between;
-    align-items: flex-start;
-       
+    align-items: flex-start;       
 `;
 
 const PopularCategories = styled.div`
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.3em;
     width: 1180px;
     margin-bottom: 30px;
 `;

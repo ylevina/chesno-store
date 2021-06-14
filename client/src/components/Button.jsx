@@ -17,9 +17,8 @@ const StyledButton = styled.button`
   font-size: ${props => (props.fontSize)};
   font-weight: 700;
   color: ${props => (props.textColor)};
-  margin: 10px 0;
-  padding: 0.7em 1.5em;
-  min-width: 100px; 
+  padding: 0.7em 1.5em;  
+  
   cursor: pointer;   
   visibility: ${props => (props.hide)? 'hidden' : 'visible '};
 
@@ -33,3 +32,6 @@ const StyledButton = styled.button`
     margin-left: 5px;
   }
 `;
+//min-width: 100px; 
+// margin: 10px 0;
+//

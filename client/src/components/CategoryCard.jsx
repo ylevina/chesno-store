@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontSize } from '../variables';
 import { Button } from './Button';
 
 export const CategoryCard = ({ name, description, imgUrl, buttonText, url }) => {
@@ -27,7 +28,7 @@ const StyledCard = styled.div`
     border-radius: 20px;
     width: 580px;
     height: 580px;
-    padding: 40px;
+    padding: 40px;    
 `;
 
 const DetailsStyled = styled.div`
@@ -53,9 +54,10 @@ const ButtonWrap = styled.div`
     width: 40%;
     bottom: 0px;
 `;
-
 const HeadingStyled = styled.h3`
     margin: 0 0 1em;
+    font-size: ${FontSize.L};
+    font-weight: 700;
 `;
 
 const DescriptionStyled = styled.p`

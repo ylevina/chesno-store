@@ -9,4 +9,8 @@ export const LinkStyled = styled(Link)`
     :visited {color: ${props => (props.color)};} 
     :hover {color: ${props => (props.color)};}   
     :active {color: ${props => (props.color)};} 
+
+    display: flex;
+    align-items: center;
+   
 `;

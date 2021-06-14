@@ -53,14 +53,14 @@ export const Categories = connect(mapStateToProps, { selectCategories, getProduc
 
         return (
             <CategoriesStyled>
-                <Header>
+                <SectionHeader>
                     <Heading>Для дому</Heading>
                     <select>
                         <option value="">Від дорогих до дешевих</option>
                         <option value="">Від дешевих до дорогих</option>
                         <option value="">Популярні</option>
                     </select>
-                </Header>
+                </SectionHeader>
                 <Main>
                     <Filter>
                         <div>
@@ -100,7 +100,7 @@ export const Categories = connect(mapStateToProps, { selectCategories, getProduc
                             </Colors>
                         </ColorFilter>
                     </Filter>
-                    <Products>
+                    <ProductList>
                         {                           
                             filter(products).map(el => (<ListItemStyled>
                             <ProductCard key={el.itemNo}
@@ -112,19 +112,19 @@ export const Categories = connect(mapStateToProps, { selectCategories, getProduc
                             />
                         </ListItemStyled>))}
                         {/* </ListStyled> */}
-                    </Products>
+                    </ProductList>
                 </Main>
             </CategoriesStyled>
         )
     });
 
-const CategoriesStyled = styled.div`
+const CategoriesStyled = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
 `;
 
-const Header = styled.div`
+const SectionHeader = styled.div`
     display: flex;
     justify-content: space-between;   
 `;
@@ -134,7 +134,7 @@ const Heading = styled.h2`
 
 const Main = styled.div`
     display: flex;
-    width: 85%;
+    margin: 20px 0;
 `;
 
 const Filter = styled.div`
@@ -151,8 +151,8 @@ const ListStyled = styled.ul`
 
 const ListItemStyled = styled.li`
     display: flex;
-    align-items: center;
-    margin: 5px;    
+    align-items: center;      
+    margin-right: 16px; 
 `;
 
 const PStyled = styled.p`
@@ -170,15 +170,17 @@ const Checkbox = styled.div`
     width: 10px;
     border: 1px solid #FF8B00;
     background-color: ${props => (props.isChecked ? '#FF8B00' : 'white')};
-    margin: 0 10px;
+    
 `;
 
-const Products = styled.ul`
+const ProductList = styled.ul`
+    width: 85%;
     list-style-type: none;
     display: flex;
     justify-content: flex-start;
+    align-items: flex-start;
     flex-wrap: wrap;
-    margin-bottom: 30px;    
+    margin-bottom: 30px;       
 `;
 
 const PriceFilter = styled.div`

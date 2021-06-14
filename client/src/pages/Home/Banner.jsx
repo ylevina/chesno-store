@@ -26,19 +26,22 @@ const BannerStyled = styled.div`
     border-radius: 25px;
     width: 100%;
     height: 450px;
-    padding: 140px 80px;
+    padding: 135px 80px;
     margin-bottom: 60px;
     color: white;
 `;
 
 const BannerHeading = styled.h1`
     font-size: ${FontSize.XXL};
-    margin: 0;
+    font-weight: 700;
+    margin: 0 0 0.2em;
 
 `;
 const BannerDescription = styled.p`
     font-size: ${FontSize.XS};
     font-weight: 300;
+    margin-bottom: 3em;
+
 `;
 const MoreInfoButton = styled.div`
 
